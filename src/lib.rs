@@ -61,7 +61,7 @@ macro_rules! ready {
 }
 
 pub mod client;
-mod common;
+pub mod common;
 use common::{MidHandshake, TlsState};
 pub mod server;
 

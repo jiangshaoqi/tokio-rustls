@@ -35,6 +35,17 @@ impl<IO> TlsStream<IO> {
     pub fn into_inner(self) -> (IO, ServerConnection) {
         (self.io, self.session)
     }
+
+    #[inline]
+    pub fn in_inner_all(self) -> (IO, ServerConnection, TlsState) {
+        (self.io, self.session, self.state)
+    }
+
+    pub fn new(io: IO, session: ServerConnection, state: TlsState) -> TlsStream<IO> {
+        TlsStream {
+            io, session, state
+        }
+    }
 }
 
 impl<IO> IoSession for TlsStream<IO> {
